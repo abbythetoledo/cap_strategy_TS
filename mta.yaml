@@ -1,0 +1,70 @@
+_schema-version: 3.3.0
+ID: cap_strategy_001
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: cap_strategy_001-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: hana-hdi-001
+      - name: cap-dev-destination-001
+      - name: cap-dev-xsuaa-001
+      - name: cap_strategy_001-logging
+      - name: cap_strategy_001-connectivity
+      - name: cap_strategy_001-destination
+      - name: cap_strategy_001-db
+
+  - name: cap_strategy_001-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: hana-hdi-001
+      - name: cap_strategy_001-db
+
+resources:
+  - name: hana-hdi-001
+    type: org.cloudfoundry.existing-service
+  - name: cap-dev-destination-001
+    type: org.cloudfoundry.existing-service
+  - name: cap-dev-xsuaa-001
+    type: org.cloudfoundry.existing-service
+  - name: cap_strategy_001-logging
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: standard
+  - name: cap_strategy_001-connectivity
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite
+  - name: cap_strategy_001-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+  - name: cap_strategy_001-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
