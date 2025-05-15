@@ -37,17 +37,21 @@
 		"start": "cds-serve",
 		"deploy": "cf deploy mta_archives/cap_strategy_001_1.0.0.mtar --retries 1",
 		"watch": "cds-tsx w",
-		"before:cds-watch": "cds-typer \"*\""
+		"before:cds-watch": "cds-typer \"*\"",
+		"watch:hybrid": "cds watch --profile hybrid",
+		"test": "jest"
 	},
 	"cds": {
 		"requires": {
-			"connectivity": true,
-			"destinations": true,
-			"application-logging": true,
-			"db": "hana",
-			"auth": "mocked",
-			"sql": {
-				"native_hana_associations": false
+			"[production]": {
+				"connectivity": true,
+				"destinations": true,
+				"application-logging": true,
+				"db": "hana",
+				"auth": "mocked",
+				"sql": {
+					"native_hana_associations": false
+				}
 			}
 		},
 		"hana": {

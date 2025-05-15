@@ -17,8 +17,6 @@ entity ProductCategory : managed {
 
 entity Orders : managed {
     key ID         : Integer;
-        ProductID  : Association to Products;
-        Quantity   : Integer;
         OrderDate  : DateTime;
         Status     : String(20);
         Customer   : Association to Customers;
@@ -32,8 +30,6 @@ entity Customers : managed {
         Email   : String(100);
         Phone   : String(20);
         Address : String(200);
-        Orders  : Association to many Orders
-                      on Orders.Customer = $self;
 }
 
 entity OrderItems : managed {

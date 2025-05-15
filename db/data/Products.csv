@@ -1,0 +1,101 @@
+ID,Name,Description,Price,Stock,Category_ID
+1,Electronics Product 1,Description of Electronics Product 1,501.8,8,1
+2,Electronics Product 2,Description of Electronics Product 2,307.15,13,1
+3,Electronics Product 3,Description of Electronics Product 3,79.07,9,1
+4,Electronics Product 4,Description of Electronics Product 4,566.36,36,1
+5,Electronics Product 5,Description of Electronics Product 5,387.67,10,1
+6,Electronics Product 6,Description of Electronics Product 6,379.98,56,1
+7,Electronics Product 7,Description of Electronics Product 7,260.53,85,1
+8,Electronics Product 8,Description of Electronics Product 8,481.51,23,1
+9,Electronics Product 9,Description of Electronics Product 9,713.95,98,1
+10,Electronics Product 10,Description of Electronics Product 10,556.78,44,1
+11,Clothing Product 1,Description of Clothing Product 1,447.2,29,2
+12,Clothing Product 2,Description of Clothing Product 2,268.1,31,2
+13,Clothing Product 3,Description of Clothing Product 3,246.44,66,2
+14,Clothing Product 4,Description of Clothing Product 4,382.76,41,2
+15,Clothing Product 5,Description of Clothing Product 5,306.64,56,2
+16,Clothing Product 6,Description of Clothing Product 6,950.49,87,2
+17,Clothing Product 7,Description of Clothing Product 7,349.04,21,2
+18,Clothing Product 8,Description of Clothing Product 8,398.31,9,2
+19,Clothing Product 9,Description of Clothing Product 9,825.26,7,2
+20,Clothing Product 10,Description of Clothing Product 10,535.5,88,2
+21,Home & Kitchen Product 1,Description of Home & Kitchen Product 1,799.63,88,3
+22,Home & Kitchen Product 2,Description of Home & Kitchen Product 2,680.36,55,3
+23,Home & Kitchen Product 3,Description of Home & Kitchen Product 3,10.46,8,3
+24,Home & Kitchen Product 4,Description of Home & Kitchen Product 4,564.85,34,3
+25,Home & Kitchen Product 5,Description of Home & Kitchen Product 5,877.03,1,3
+26,Home & Kitchen Product 6,Description of Home & Kitchen Product 6,63.78,49,3
+27,Home & Kitchen Product 7,Description of Home & Kitchen Product 7,644.49,49,3
+28,Home & Kitchen Product 8,Description of Home & Kitchen Product 8,752.03,8,3
+29,Home & Kitchen Product 9,Description of Home & Kitchen Product 9,507.28,78,3
+30,Home & Kitchen Product 10,Description of Home & Kitchen Product 10,819.86,41,3
+31,Books Product 1,Description of Books Product 1,910.93,50,4
+32,Books Product 2,Description of Books Product 2,135.81,8,4
+33,Books Product 3,Description of Books Product 3,243.83,45,4
+34,Books Product 4,Description of Books Product 4,839.73,13,4
+35,Books Product 5,Description of Books Product 5,293.62,75,4
+36,Books Product 6,Description of Books Product 6,599.83,99,4
+37,Books Product 7,Description of Books Product 7,557.88,76,4
+38,Books Product 8,Description of Books Product 8,205.98,31,4
+39,Books Product 9,Description of Books Product 9,131.1,96,4
+40,Books Product 10,Description of Books Product 10,77.13,35,4
+41,Beauty & Personal Care Product 1,Description of Beauty & Personal Care Product 1,25.72,77,5
+42,Beauty & Personal Care Product 2,Description of Beauty & Personal Care Product 2,532.68,11,5
+43,Beauty & Personal Care Product 3,Description of Beauty & Personal Care Product 3,683.03,41,5
+44,Beauty & Personal Care Product 4,Description of Beauty & Personal Care Product 4,834.06,54,5
+45,Beauty & Personal Care Product 5,Description of Beauty & Personal Care Product 5,668.15,45,5
+46,Beauty & Personal Care Product 6,Description of Beauty & Personal Care Product 6,487.9,59,5
+47,Beauty & Personal Care Product 7,Description of Beauty & Personal Care Product 7,111.71,45,5
+48,Beauty & Personal Care Product 8,Description of Beauty & Personal Care Product 8,622.9,52,5
+49,Beauty & Personal Care Product 9,Description of Beauty & Personal Care Product 9,237.51,20,5
+50,Beauty & Personal Care Product 10,Description of Beauty & Personal Care Product 10,209.66,85,5
+51,Sports & Outdoors Product 1,Description of Sports & Outdoors Product 1,233.83,69,6
+52,Sports & Outdoors Product 2,Description of Sports & Outdoors Product 2,84.38,16,6
+53,Sports & Outdoors Product 3,Description of Sports & Outdoors Product 3,217.28,93,6
+54,Sports & Outdoors Product 4,Description of Sports & Outdoors Product 4,326.8,28,6
+55,Sports & Outdoors Product 5,Description of Sports & Outdoors Product 5,776.4,84,6
+56,Sports & Outdoors Product 6,Description of Sports & Outdoors Product 6,630.62,6,6
+57,Sports & Outdoors Product 7,Description of Sports & Outdoors Product 7,321.17,27,6
+58,Sports & Outdoors Product 8,Description of Sports & Outdoors Product 8,396.97,44,6
+59,Sports & Outdoors Product 9,Description of Sports & Outdoors Product 9,877.44,94,6
+60,Sports & Outdoors Product 10,Description of Sports & Outdoors Product 10,494.16,50,6
+61,Toys & Games Product 1,Description of Toys & Games Product 1,245.14,18,7
+62,Toys & Games Product 2,Description of Toys & Games Product 2,238.48,59,7
+63,Toys & Games Product 3,Description of Toys & Games Product 3,964.82,26,7
+64,Toys & Games Product 4,Description of Toys & Games Product 4,636.39,16,7
+65,Toys & Games Product 5,Description of Toys & Games Product 5,792.33,80,7
+66,Toys & Games Product 6,Description of Toys & Games Product 6,883.67,26,7
+67,Toys & Games Product 7,Description of Toys & Games Product 7,431.89,89,7
+68,Toys & Games Product 8,Description of Toys & Games Product 8,143.47,41,7
+69,Toys & Games Product 9,Description of Toys & Games Product 9,280.59,97,7
+70,Toys & Games Product 10,Description of Toys & Games Product 10,735.58,49,7
+71,Automotive Product 1,Description of Automotive Product 1,454.93,51,8
+72,Automotive Product 2,Description of Automotive Product 2,704.26,60,8
+73,Automotive Product 3,Description of Automotive Product 3,343.01,26,8
+74,Automotive Product 4,Description of Automotive Product 4,485.11,68,8
+75,Automotive Product 5,Description of Automotive Product 5,138.66,65,8
+76,Automotive Product 6,Description of Automotive Product 6,37.7,76,8
+77,Automotive Product 7,Description of Automotive Product 7,572.33,23,8
+78,Automotive Product 8,Description of Automotive Product 8,475.43,9,8
+79,Automotive Product 9,Description of Automotive Product 9,574.74,18,8
+80,Automotive Product 10,Description of Automotive Product 10,856.07,75,8
+81,Health & Wellness Product 1,Description of Health & Wellness Product 1,419.02,93,9
+82,Health & Wellness Product 2,Description of Health & Wellness Product 2,674.7,25,9
+83,Health & Wellness Product 3,Description of Health & Wellness Product 3,905.83,82,9
+84,Health & Wellness Product 4,Description of Health & Wellness Product 4,62.91,29,9
+85,Health & Wellness Product 5,Description of Health & Wellness Product 5,843.06,13,9
+86,Health & Wellness Product 6,Description of Health & Wellness Product 6,291.88,35,9
+87,Health & Wellness Product 7,Description of Health & Wellness Product 7,902.27,38,9
+88,Health & Wellness Product 8,Description of Health & Wellness Product 8,793.12,10,9
+89,Health & Wellness Product 9,Description of Health & Wellness Product 9,315.92,14,9
+90,Health & Wellness Product 10,Description of Health & Wellness Product 10,536.52,79,9
+91,Pet Supplies Product 1,Description of Pet Supplies Product 1,361.24,31,10
+92,Pet Supplies Product 2,Description of Pet Supplies Product 2,432.59,54,10
+93,Pet Supplies Product 3,Description of Pet Supplies Product 3,993.6,66,10
+94,Pet Supplies Product 4,Description of Pet Supplies Product 4,108.73,92,10
+95,Pet Supplies Product 5,Description of Pet Supplies Product 5,299.76,75,10
+96,Pet Supplies Product 6,Description of Pet Supplies Product 6,156.36,29,10
+97,Pet Supplies Product 7,Description of Pet Supplies Product 7,500.4,75,10
+98,Pet Supplies Product 8,Description of Pet Supplies Product 8,4.63,88,10
+99,Pet Supplies Product 9,Description of Pet Supplies Product 9,864.38,7,10
+100,Pet Supplies Product 10,Description of Pet Supplies Product 10,435.11,62,10

@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "cds serve",
+      "name": "cds serve dev",
       "request": "launch",
       "type": "node",
       "cwd": "${workspaceFolder}",
@@ -17,25 +17,20 @@
       ]
     },
     {
-      "name": "Run cap_strategy_001-2",
+      "name": "cds serve prod",
       "request": "launch",
       "type": "node",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "cds",
       "args": [
         "serve",
-        "--in-memory?"
+        "--with-mocks",
+        "--profile",
+        "hybrid"
       ],
-      "console": "internalConsole",
-      "internalConsoleOptions": "openOnSessionStart",
       "skipFiles": [
         "<node_internals>/**"
-      ],
-      "envFile": "${workspaceFolder}/.env2",
-      "env": {
-        "NODE_ENV": "development",
-        "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/cap_strategy_001\\\",\\\"profileName\\\":\\\"development\\\"}\"}"
-      }
+      ]
     }
   ]
 }

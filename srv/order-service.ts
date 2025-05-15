@@ -16,16 +16,15 @@ module.exports = class OrderService extends cds.ApplicationService {
     
     async addCategory(req : Request) {
         try {
-            const id : number = parseInt(req.data.id);
-            const name : string = req.data.name;
-            const description : string = req.data.description;
             const tx : Transaction = cds.tx();
-            const query = INSERT.into(cds.entities.ProductCategory).columns(["ID", "Name", "Description"]).values(
-                id,
-                name,
-                description)
+            const query = INSERT.into(cds.entities.ProductCategory).entries(req.data.payload)
     
             await tx.run(query).then(tx.commit, tx.rollback);
+
+            return {
+                message: "Data inserted successfully",
+                data: req.data.payload
+            }
         } catch (error) {
             logger.error(JSON.stringify(error));
         }
@@ -40,6 +39,8 @@ module.exports = class OrderService extends cds.ApplicationService {
             const result : ProductCategory[] = await cds.run(query);
 
             logger.info(result);
+
+            return result;
         } catch (error) {
             logger.error(JSON.stringify(error));
         }

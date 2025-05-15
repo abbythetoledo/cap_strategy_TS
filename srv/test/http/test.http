@@ -1,0 +1,16 @@
+POST http://localhost:4004/orders/addProductCategory
+Content-Type: application/json
+
+{
+    "payload": [{
+    "ID": 17,
+    "Name": "test order 1",
+    "Description": "this is a test entry"
+    }]
+}
+
+
+####
+
+GET http://localhost:4004/orders/selectProductCategory(id=6)
+Content-Type: application/json
