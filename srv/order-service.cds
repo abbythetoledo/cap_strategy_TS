@@ -1,6 +1,6 @@
 using { ProductCategory } from '../db/schema';
 
-service OrderService @(path: '/orders'){
+service OrderService @(path: '/orders', impl: 'srv/order-service.ts'){
 
 
     type CategoryPayload {

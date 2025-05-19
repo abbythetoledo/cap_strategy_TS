@@ -1,6 +1,6 @@
 using { ProductCategory } from '../db/schema';
 
-service AdminService @(path: '/admin'){
+service AdminService @(path: '/admin', impl: 'srv/admin-service.ts'){
     type CategoryPayload {
         ID: Integer;
         Name: String;

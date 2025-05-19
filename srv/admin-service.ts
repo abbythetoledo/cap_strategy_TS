@@ -1,7 +1,6 @@
 const cds = require("@sap/cds");
 const logger = cds.log("OrderService");
 import { Request, Transaction } from "@sap/cds";
-import { ProductCategory } from '#cds-models/';
 
 
 module.exports = class AdminService extends cds.ApplicationService {
@@ -13,7 +12,7 @@ module.exports = class AdminService extends cds.ApplicationService {
         return super.init();
     }
     
-    async addCategory(req : Request) {
+    async addCategory(req : Request) : Promise<ResponseData<ProductCategoryPayload>> {
         try {
             const tx : Transaction = cds.tx();
             const query = INSERT.into(cds.entities.ProductCategory).entries(req.data.payload)
@@ -29,7 +28,7 @@ module.exports = class AdminService extends cds.ApplicationService {
             logger.error(JSON.stringify(error));
 
             return {
-                message: error.message || error.originalMessage || "Inserting category failes",
+                message: error.message || error.originalMessage || "Inserting category failed",
                 code: error.code || 400,
                 data: req.data.payload
             }

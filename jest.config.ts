@@ -1,5 +1,10 @@
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
-    modulePathIgnorePatterns: ["gen"]
+    modulePathIgnorePatterns: ["gen"],
+    moduleFileExtensions: [
+      "js",
+      "json",
+      "ts"
+    ],
 }

@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "payload": [{
-    "ID": 10,
+    "ID": 11,
     "Name": "test order 1",
     "Description": "this is a test entry"
     }]
@@ -11,3 +11,5 @@ Content-Type: application/json
 
 
 ####
+GET http://localhost:4004/orders/selectProductCategory(id=4)
+Content-Type: application/json
