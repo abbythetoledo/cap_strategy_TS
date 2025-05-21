@@ -1,17 +1,21 @@
-using { ProductCategory } from '../db/schema';
-
 service OrderService @(path: '/orders', impl: 'srv/order-service.ts'){
 
-
-    type CategoryPayload {
+    type OrderPayload {
         ID: Integer;
-        Name: String;
-        Description: String;
-    }
-    entity ProductCategoryProjection as projection on ProductCategory {
-        ID, Name, Description
+        OrderDate: DateTime;
+        Status: String;
+        Customer_ID: Integer;
+        OrderItems: array of OrderItemsPayload;
     };
-    action addProductCategory(payload: array of CategoryPayload) returns String;
-    function selectProductCategory(id: Integer) returns String;
+
+    type OrderItemsPayload {
+        ID: Integer;
+        Order_ID: Integer;
+        Product_ID: Integer;
+        Quantity: Integer;
+        Price: Decimal(10,2);
+    };
+
+    action sendOrder (payload: OrderPayload) returns String;
 
 }

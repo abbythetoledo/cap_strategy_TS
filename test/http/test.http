@@ -1,0 +1,33 @@
+POST http://localhost:4004/admin/addProductCategory
+Content-Type: application/json
+
+{
+    "payload": [{
+    "ID": 13,
+    "Name": "test order 1",
+    "Description": "this is a test entry"
+    }]
+}
+
+
+####
+POST http://localhost:4004/orders/sendOrder
+Content-Type: application/json
+
+{
+    "payload": {
+    "ID":1,
+    "OrderDate":"2025-05-21T09:14:00Z",
+    "Status": "New",
+    "Customer_ID": 1,
+    "OrderItems": [
+        {
+            "ID": 1,
+            "Order_ID": 1,
+            "Product_ID": 1,
+            "Quantity": 1,
+            "Price": 12.99
+        }
+    ]
+}
+}

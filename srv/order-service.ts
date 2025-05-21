@@ -2,48 +2,65 @@ const cds = require("@sap/cds");
 const logger = cds.log("OrderService");
 import { Request, Transaction } from "@sap/cds";
 import { ProductCategory } from '#cds-models/';
-
+const { create } = require("./lib/crud");
 
 module.exports = class OrderService extends cds.ApplicationService {
 
-    init() {
+    async init() : Promise<Function> {
 
-        this.on("addProductCategory", async (req : Request) => await this.addCategory(req));
-        this.on("selectProductCategory", async (req : Request) => await this.selectCategory(req));
+        this.on("sendOrder", async (req : Request) => await sendOrder(req));
+
+        async function sendOrder(req : Request) : Promise<ResponseData<OrderPayload>>{
+
+            try {
+                const customerID : number = req.data.payload.Customer_ID;
+                const orderItems : OrderItem[] = req.data.payload.OrderItems;
+                const orderItemIDs : number[] = req.data.payload.OrderItems.map((item : OrderItem) => item.ID);
+                delete req.data.payload.OrderItems;
+                const order : OrderPayload[] = [req.data.payload];
+                const customerQuery = SELECT.from(cds.entities.Customers).columns("ID").where({ ID: customerID });
+                const customer = await cds.run(customerQuery);
+                if (customer.length === 0) {
+                    return {
+                        message: "Customer does not exist in our system",
+                        code: 400,
+                        data: req.data.payload
+                    }
+                };
+    
+                const products = await cds.run(SELECT.columns(["ID", "Name"]).from(cds.entities.Products).where({
+                    ID: {
+                        in: orderItemIDs
+                    }
+                }));
+    
+                if (products.length === 0) {
+                    return {
+                        message: "Products do not exist in the system",
+                        code: 400,
+                        data: req.data.payload
+                    }
+                }
+
+                await create(cds.entities.Orders, order);
+                await create(cds.entities.OrderItems, orderItems);
+    
+                return {
+                    message: "Data inserted successfully",
+                    code: 200,
+                    data: req.data.payload
+                }
+            } catch (error : any) {
+    
+                return {
+                    message: error.message || error.originalMessage || "Inserting category failed",
+                    code: error.code || 400,
+                    data: req.data.payload
+                }
+            }
+        }
 
         return super.init();
-    }
-    
-    async addCategory(req : Request) {
-        try {
-            const tx : Transaction = cds.tx();
-            const query = INSERT.into(cds.entities.ProductCategory).entries(req.data.payload)
-    
-            await tx.run(query).then(tx.commit, tx.rollback);
-
-            return {
-                message: "Data inserted successfully",
-                data: req.data.payload
-            }
-        } catch (error) {
-            logger.error(JSON.stringify(error));
-        }
-    }
-
-    async selectCategory(req : Request) {
-        try {
-            const query = SELECT.from(cds.entities.ProductCategory).columns("ID", "Name", "Description").where({
-                ID: req.data.id
-            });
-    
-            const result : ProductCategory[] = await cds.run(query);
-
-            logger.info(result);
-
-            return result;
-        } catch (error) {
-            logger.error(JSON.stringify(error));
-        }
     }
 
 }

@@ -9,3 +9,17 @@ type ProductCategoryPayload = {
     Name: string,
     Description: string
 }
+type OrderItem = {
+    ID: number,
+    Order_ID: number,
+    Product_ID: number,
+    Quantity: number,
+    Price: float
+}
+type OrderPayload = {
+    ID: number,
+    OrderDate: string,
+    Status: string,
+    Customer_ID: integer,
+    OrderItems: Optional<OrderItem[]>
+}

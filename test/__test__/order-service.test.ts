@@ -10,7 +10,7 @@ describe('Order Service Test Suite', () => {
  
     beforeAll(async () => {
         try {
-            cds.env.requires.db = { kind: 'sqlite', database: ':memory' };
+            cds.env.requires.db = { kind: 'sqlite', database: '_memory.db' };
             srv = await cds.load(cds.root + '/srv/order-service.cds').then(cds.serve)
             await cds.deploy(cds.root + '/db');
      
