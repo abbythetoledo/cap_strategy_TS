@@ -8,9 +8,9 @@ module.exports = class OrderService extends cds.ApplicationService {
 
     async init() : Promise<Function> {
 
-        this.on("sendOrder", async (req : Request) => await sendOrder(req));
+        this.on("sendOrder", async (req : Request, next: Function) => await sendOrder(req, next));
 
-        async function sendOrder(req : Request) : Promise<ResponseData<OrderPayload>>{
+        async function sendOrder(req : Request, next: Function) : Promise<ResponseData<OrderPayload>>{
 
             try {
                 const customerID : number = req.data.payload.Customer_ID;
@@ -44,6 +44,8 @@ module.exports = class OrderService extends cds.ApplicationService {
 
                 await create(cds.entities.Orders, order);
                 await create(cds.entities.OrderItems, orderItems);
+
+                await next();
     
                 return {
                     message: "Data inserted successfully",

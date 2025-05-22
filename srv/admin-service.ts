@@ -8,9 +8,9 @@ module.exports = class AdminService extends cds.ApplicationService {
 
     async init() : Promise<Function> {
 
-        this.on("addProductCategory", async (req : Request) => await addCategory(req));
+        this.on("addProductCategory", async (req : Request, next: Function) => await addCategory(req, next));
 
-        async function addCategory(req : Request) : Promise<ResponseData<ProductCategoryPayload>> {
+        async function addCategory(req : Request, next : Function) : Promise<ResponseData<ProductCategoryPayload>> {
             try {
     
                 const existingCategory = await cds.run(SELECT.from(cds.entities.ProductCategory).columns("ID").where({ ID: req.data.payload.ID }));
@@ -24,6 +24,7 @@ module.exports = class AdminService extends cds.ApplicationService {
                 }
     
                 await create(cds.entities.ProductCategory, req.data.payload);
+                await next();
     
                 return {
                     message: "Data inserted successfully",
