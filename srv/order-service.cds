@@ -1,4 +1,4 @@
-service OrderService @(path: '/orders', impl: 'srv/order-service.ts'){
+service OrderService @(path: '/orders', impl: 'srv/order-service'){
 
     type OrderPayload {
         ID: Integer;
