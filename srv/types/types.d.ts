@@ -23,3 +23,12 @@ type OrderPayload = {
     Customer_ID: integer,
     OrderItems: Optional<OrderItem[]>
 }
+
+type ProductPayload = {
+    ID: string,
+    Name: string,
+    Description: string,
+    Price: float,
+    Stock: number,
+    Category_ID: number
+}

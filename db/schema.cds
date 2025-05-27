@@ -17,7 +17,7 @@ entity ProductCategory : managed {
 
 entity Orders : managed {
     key ID         : Integer;
-        OrderDate  : DateTime;
+        OrderDate  : Timestamp;
         Status     : String(20);
         Customer   : Association to Customers;
         OrderItems : Association to many OrderItems

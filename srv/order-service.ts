@@ -15,6 +15,7 @@ module.exports = class OrderService extends cds.ApplicationService {
                 const customerID : number = req.data.payload.Customer_ID;
                 const orderItems : OrderItem[] = req.data.payload.OrderItems;
                 const orderItemIDs : number[] = req.data.payload.OrderItems.map((item : OrderItem) => item.ID);
+                const productIDs : number[] = req.data.payload.OrderItems.map((item : OrderItem) => item.Product_ID);
                 delete req.data.payload.OrderItems;
                 const order : OrderPayload[] = [req.data.payload];
                 const customerQuery = SELECT.from(cds.entities.Customers).columns("ID").where({ ID: customerID });
@@ -29,7 +30,7 @@ module.exports = class OrderService extends cds.ApplicationService {
     
                 const products = await cds.run(SELECT.columns(["ID", "Name"]).from(cds.entities.Products).where({
                     ID: {
-                        in: orderItemIDs
+                        in: productIDs
                     }
                 }));
     
@@ -45,14 +46,14 @@ module.exports = class OrderService extends cds.ApplicationService {
                 await create(cds.entities.OrderItems, orderItems);
     
                 return {
-                    message: "Data inserted successfully",
+                    message: "Order sent succesfully",
                     code: 200,
                     data: req.data.payload
                 }
             } catch (error : any) {
     
                 return {
-                    message: error.message || error.originalMessage || "Inserting category failed",
+                    message: error.message || error.originalMessage || "Sending order failed",
                     code: error.code || 400,
                     data: req.data.payload
                 }

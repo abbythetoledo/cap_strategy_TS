@@ -2,7 +2,7 @@ service OrderService @(path: '/orders', impl: 'srv/order-service'){
 
     type OrderPayload {
         ID: Integer;
-        OrderDate: DateTime;
+        OrderDate: Timestamp;
         Status: String;
         Customer_ID: Integer;
         OrderItems: array of OrderItemsPayload;

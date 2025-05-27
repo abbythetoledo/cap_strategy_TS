@@ -9,6 +9,45 @@ Content-Type: application/json
     }]
 }
 
+####
+
+POST http://localhost:4004/admin/addProducts
+Content-Type: application/json
+
+{
+    "payload": [{
+    "ID": 14,
+    "Name": "test order 1",
+    "Description": "this is a test entry",
+    "Price": 18.99,
+    "Stock": 20,
+    "Category_ID": 1
+    },
+    {
+    "ID": 51,
+    "Name": "test order 1",
+    "Description": "this is a test entry",
+    "Price": 18.99,
+    "Stock": 20,
+    "Category_ID": 1
+    },
+    {
+    "ID": 109,
+    "Name": "test order 1",
+    "Description": "this is a test entry",
+    "Price": 18.99,
+    "Stock": 20,
+    "Category_ID": 1
+    },
+    {
+    "ID": 110,
+    "Name": "test order 1",
+    "Description": "this is a test entry",
+    "Price": 18.99,
+    "Stock": 20,
+    "Category_ID": 13
+    }]
+}
 
 ####
 POST http://localhost:4004/orders/sendOrder
