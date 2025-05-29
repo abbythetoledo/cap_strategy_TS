@@ -7,7 +7,16 @@ let srv: ApplicationService;
 jest.setTimeout(90000);
 
 beforeAll(async () => {
-  cds.env.requires.db = { kind: "sqlite", database: "test.db" };
+  cds.env.requires.db = {
+    kind: "sqlite",
+    database: "test.db",
+    pool: {
+      max: 50, // Maximum number of connections in the pool
+      min: 5,  // Minimum number of connections in the pool
+      acquireTimeout: 60000, // Timeout for acquiring a connection (milliseconds)
+      idleTimeout: 300000 // Timeout for idle connections (milliseconds)
+    }
+  };
   srv = await cds.load(cds.root + "/srv/admin-service.cds").then(cds.serve);
   await cds.deploy(cds.root + "/db");
 });

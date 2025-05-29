@@ -7,14 +7,14 @@ module.exports = class AdminService extends cds.ApplicationService {
   init() {
     this.on(
       "addProductCategory",
-      async (req: Request) => await addCategory(req)
+      async (req: Request, next: Function) => await addCategory(req, next)
     );
 
-    this.on("addProducts", async (req: Request) => await addProduct(req));
+    this.on("addProducts", async (req: Request, next: Function) => await addProduct(req, next));
 
     async function addCategory(
-      req: Request
-    ): Promise<ResponseData<ProductCategoryPayload>> {
+      req: Request, next: Function
+    ): Promise<Function> {
       try {
         const existingCategory = await cds.run(
           SELECT.from(cds.entities.ProductCategory)
@@ -36,39 +36,45 @@ module.exports = class AdminService extends cds.ApplicationService {
           if (filteredCategories.length > 0) {
             await create(cds.entities.ProductCategory, filteredCategories);
           }
-          return {
+          req.reply({
             message:
               "The following category IDs already exist: " +
               existingCategory.join(", "),
             code: 200,
             data: req.data.payload,
-          };
+          });
+
+          return next();
         }
 
         await create(cds.entities.ProductCategory, req.data.payload);
 
-        return {
+        req.reply({
           message: "Data inserted successfully",
           code: 200,
           data: req.data.payload,
-        };
+        });
+
+        return next();
       } catch (error: any) {
         logger.error(JSON.stringify(error));
 
-        return {
+        req.reply({
           message:
             error.message ||
             error.originalMessage ||
             "Inserting category failed",
           code: error.code || 400,
           data: req.data.payload,
-        };
+        });
+
+        return next();
       }
     }
 
     async function addProduct(
-      req: Request
-    ): Promise<ResponseData<ProductPayload>> {
+      req: Request, next: Function
+    ): Promise<Function> {
       try {
         const existingProducts = await cds
           .run(
@@ -109,7 +115,7 @@ module.exports = class AdminService extends cds.ApplicationService {
             await create(cds.entities.Products, filteredProducts);
           }
 
-          return {
+          req.reply({
             message:
               "The following products were not registered: " +
               req.data.payload
@@ -123,27 +129,33 @@ module.exports = class AdminService extends cds.ApplicationService {
                 .join(", "),
             code: 200,
             data: req.data.payload,
-          };
+          });
+
+          return next();
         }
 
         await create(cds.entities.Products, req.data.payload);
 
-        return {
+        req.reply({
           message: "Data inserted successfully",
           code: 200,
           data: req.data.payload,
-        };0
+        });
+
+        return next();
       } catch (error: any) {
         logger.error(JSON.stringify(error));
 
-        return {
+        req.reply({
           message:
             error.message ||
             error.originalMessage ||
             "Inserting products failed",
           code: error.code || 400,
           data: req.data.payload,
-        };
+        });
+
+        return next();
       }
     }
 

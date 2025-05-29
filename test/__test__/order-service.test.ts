@@ -11,7 +11,16 @@ describe("Order Service Test Suite", () => {
 
   beforeAll(async () => {
     try {
-      cds.env.requires.db = { kind: "sqlite", database: "test.db" };
+      cds.env.requires.db = {
+        kind: "sqlite",
+        database: "test.db",
+        pool: {
+          max: 50, // Maximum number of connections in the pool
+          min: 5,  // Minimum number of connections in the pool
+          acquireTimeout: 60000, // Timeout for acquiring a connection (milliseconds)
+          idleTimeout: 300000 // Timeout for idle connections (milliseconds)
+        }
+      };
       srv = await cds.load(cds.root + "/srv/order-service.cds").then(cds.serve);
       await cds.deploy(cds.root + "/db");
     } catch (error) {
@@ -71,11 +80,11 @@ describe("Order Service Test Suite", () => {
     );
 
     const orderItems = await cds.run(
-        SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
-          ID: {
-            in: order.payload.OrderItems.map((data) => data.ID)
-          }
-        })
+      SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
+        ID: {
+          in: order.payload.OrderItems.map((data) => data.ID)
+        }
+      })
     );
 
     expect(res.status).toBe(200);
@@ -92,8 +101,8 @@ describe("Order Service Test Suite", () => {
     );
 
     let { maxCustomerID } = await cds.run(
-        SELECT.one("max(ID) as maxCustomerID").from(cds.entities.Customers)
-      );
+      SELECT.one("max(ID) as maxCustomerID").from(cds.entities.Customers)
+    );
 
     maxOrderID = ++maxOrderID || 1;
     maxOrderItemID = ++maxOrderItemID || 1;
@@ -132,11 +141,11 @@ describe("Order Service Test Suite", () => {
     );
 
     const orderItems = await cds.run(
-        SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
-          ID: {
-            in: order.payload.OrderItems.map((data) => data.ID)
-          }
-        })
+      SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
+        ID: {
+          in: order.payload.OrderItems.map((data) => data.ID)
+        }
+      })
     );
 
     expect(res.status).toBe(200);
@@ -189,18 +198,18 @@ describe("Order Service Test Suite", () => {
     );
 
     const orderItems = await cds.run(
-        SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
-          ID: {
-            in: order.payload.OrderItems.map((data) => data.ID)
-          }
-        })
+      SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
+        ID: {
+          in: order.payload.OrderItems.map((data) => data.ID)
+        }
+      })
     );
 
     expect(res.status).toBe(200);
     expect(res.data.value.code).toBe(400);
   });
 
-  
+
   test("addOrder should NOT insert new order if product does not exist", async () => {
     let { maxOrderID } = await cds.run(
       SELECT.one("max(ID) as maxOrderID").from(cds.entities.Orders)
@@ -211,7 +220,7 @@ describe("Order Service Test Suite", () => {
     );
 
     let { maxProductID } = await cds.run(
-        SELECT.one("max(ID) as maxProductID").from(cds.entities.Products)
+      SELECT.one("max(ID) as maxProductID").from(cds.entities.Products)
     );
 
     maxOrderID = ++maxOrderID || 1;
@@ -252,11 +261,11 @@ describe("Order Service Test Suite", () => {
     );
 
     const orderItems = await cds.run(
-        SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
-          ID: {
-            in: order.payload.OrderItems.map((data) => data.ID)
-          }
-        })
+      SELECT.from(cds.entities.OrderItems).columns(["ID"]).where({
+        ID: {
+          in: order.payload.OrderItems.map((data) => data.ID)
+        }
+      })
     );
 
 

@@ -7,9 +7,9 @@ module.exports = class OrderService extends cds.ApplicationService {
 
     init() {
 
-        this.on("sendOrder", async (req : Request) => await sendOrder(req));
+        this.on("sendOrder", async (req : Request, next: Function) => await sendOrder(req, next));
 
-        async function sendOrder(req : Request) : Promise<ResponseData<OrderPayload>>{
+        async function sendOrder(req : Request, next : Function) : Promise<Function>{
 
             try {
                 const customerID : number = req.data.payload.Customer_ID;
@@ -21,11 +21,13 @@ module.exports = class OrderService extends cds.ApplicationService {
                 const customerQuery = SELECT.from(cds.entities.Customers).columns("ID").where({ ID: customerID });
                 const customer = await cds.run(customerQuery);
                 if (customer.length === 0) {
-                    return {
+                    req.reply({
                         message: "Customer does not exist in our system",
                         code: 400,
                         data: req.data.payload
-                    }
+                    });
+
+                    return next();
                 };
     
                 const products = await cds.run(SELECT.columns(["ID", "Name"]).from(cds.entities.Products).where({
@@ -35,28 +37,34 @@ module.exports = class OrderService extends cds.ApplicationService {
                 }));
     
                 if (products.length === 0) {
-                    return {
+                    req.reply({
                         message: "Products do not exist in the system",
                         code: 400,
                         data: req.data.payload
-                    }
+                    });
+
+                    return next();
                 }
 
                 await create(cds.entities.Orders, order);
                 await create(cds.entities.OrderItems, orderItems);
     
-                return {
+                req.reply({
                     message: "Order sent succesfully",
                     code: 200,
                     data: req.data.payload
-                }
+                });
+
+                return next();
             } catch (error : any) {
     
-                return {
+                req.reply({
                     message: error.message || error.originalMessage || "Sending order failed",
                     code: error.code || 400,
                     data: req.data.payload
-                }
+                });
+
+                return next();
             }
         }
 
