@@ -25,8 +25,7 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: hana-hdi-001
-      - name: cap-dev-destination-001
+      - name: cap-dev-hdi-001
       - name: cap-dev-xsuaa-001
 
   - name: cap_strategy_001-db-deployer
@@ -35,12 +34,10 @@ modules:
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: hana-hdi-001
+      - name: cap-dev-hdi-001
 
 resources:
-  - name: hana-hdi-001
-    type: org.cloudfoundry.existing-service
-  - name: cap-dev-destination-001
+  - name: cap-dev-hdi-001
     type: org.cloudfoundry.existing-service
   - name: cap-dev-xsuaa-001
     type: org.cloudfoundry.existing-service

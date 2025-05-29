@@ -40,12 +40,12 @@ Content-Type: application/json
     "Category_ID": 1
     },
     {
-    "ID": 110,
+    "ID": 111,
     "Name": "test order 1",
     "Description": "this is a test entry",
     "Price": 18.99,
     "Stock": 20,
-    "Category_ID": 13
+    "Category_ID": 1
     }]
 }
 
