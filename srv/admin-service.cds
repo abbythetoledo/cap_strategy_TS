@@ -1,4 +1,4 @@
-using { ProductCategory } from '../db/schema';
+using { ProductCategory, Products } from '../db/schema';
 
 service AdminService @(path: '/admin', impl: 'srv/admin-service'){
     type CategoryPayload {
@@ -18,6 +18,11 @@ service AdminService @(path: '/admin', impl: 'srv/admin-service'){
     entity ProductCategoryProjection as projection on ProductCategory {
         ID, Name, Description
     };
+
+    entity ProductProjection as projection on Products {
+        ID, Name, Description
+    };
+    
     action addProductCategory(payload: array of CategoryPayload) returns String;
     action addProducts(payload: array of ProductPayload) returns String;
 

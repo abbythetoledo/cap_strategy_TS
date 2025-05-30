@@ -55,14 +55,10 @@ Content-Type: application/json
 
 {
     "payload": {
-    "ID":5,
-    "OrderDate":"2025-05-21T09:14:00Z",
     "Status": "New",
     "Customer_ID": 1,
     "OrderItems": [
         {
-            "ID": 5,
-            "Order_ID": 1,
             "Product_ID": 1,
             "Quantity": 1,
             "Price": 12.99
