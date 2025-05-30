@@ -22,7 +22,7 @@ module.exports = class OrderService extends cds.ApplicationService {
 
 
                 const productIDs: number[] = req.data.payload.OrderItems.map((item: OrderItem) => item.Product_ID);
-                const orderItems: OrderItem[] = req.data.payload.OrderItems.map((data: OrderItem) => { return { ...data, ID: ++maxOrderItemID, OrderID: currentOrderID } });
+                const orderItems: OrderItem[] = req.data.payload.OrderItems.map((data: OrderItem) => { return { ...data, ID: ++maxOrderItemID, Order_ID: currentOrderID } });
                 delete req.data.payload.OrderItems;
                 const order: OrderPayload[] = [{
                     ...req.data.payload, ID: currentOrderID, OrderDate: orderDate
