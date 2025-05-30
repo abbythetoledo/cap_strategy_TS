@@ -61,7 +61,7 @@ module.exports = class OrderService extends cds.ApplicationService {
                 await create(cds.entities.OrderItems, orderItems);
 
                 req.reply({
-                    message: "Order sent succesfully",
+                    message: "Order sent successfully",
                     code: 200,
                     data: order
                 });
