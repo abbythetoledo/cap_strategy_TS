@@ -1,5 +1,5 @@
 type ResponseData<T> = {
-    message : string,
+    message: string,
     code: number,
     data: T
 };
@@ -25,7 +25,7 @@ type OrderPayload = {
 }
 
 type ProductPayload = {
-    ID: string,
+    ID: Optional<number>,
     Name: string,
     Description: string,
     Price: float,

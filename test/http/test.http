@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "payload": [{
-    "ID": 14,
+    "ID": 15,
     "Name": "test order 1",
     "Description": "this is a test entry"
     }]
@@ -16,7 +16,6 @@ Content-Type: application/json
 
 {
     "payload": [{
-    "ID": 14,
     "Name": "test order 1",
     "Description": "this is a test entry",
     "Price": 18.99,
@@ -24,7 +23,6 @@ Content-Type: application/json
     "Category_ID": 1
     },
     {
-    "ID": 51,
     "Name": "test order 1",
     "Description": "this is a test entry",
     "Price": 18.99,
@@ -32,7 +30,6 @@ Content-Type: application/json
     "Category_ID": 1
     },
     {
-    "ID": 109,
     "Name": "test order 1",
     "Description": "this is a test entry",
     "Price": 18.99,
@@ -40,7 +37,6 @@ Content-Type: application/json
     "Category_ID": 1
     },
     {
-    "ID": 114,
     "Name": "test order 1",
     "Description": "this is a test entry",
     "Price": 18.99,

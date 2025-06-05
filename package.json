@@ -33,15 +33,22 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.32.0"
+    "typescript-eslint": "^8.32.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.29",
+    "cds-plugin-ui5": "^0.9.3"
   },
   "scripts": {
     "start": "cds-serve",
-    "deploy": "cf deploy mta_archives/cap_strategy_001_1.0.0.mtar --retries 1",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
     "watch": "cds-tsx w",
     "before:cds-watch": "cds-typer \"*\"",
     "watch:hybrid": "cds watch --profile hybrid",
-    "test": "jest"
+    "test": "jest",
+    "watch-admin": "cds watch --open adminns.admin/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy cap_strategy_001 --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "watch-admin2": "cds watch --open adminns2.admin2/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
     "requires": {
@@ -62,5 +69,13 @@
   },
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"
-  }
+  },
+  "sapux": [
+    "app/admin",
+    "app/admin",
+    "app/admin2"
+  ],
+  "workspaces": [
+    "app/*"
+  ]
 }
